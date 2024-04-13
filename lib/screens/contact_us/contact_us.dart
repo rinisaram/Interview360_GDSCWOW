@@ -45,13 +45,6 @@ class ContactUsScreen extends StatelessWidget {
           }),
         ],
       ),
-      // body: Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   crossAxisAlignment: CrossAxisAlignment.center,
-      //   children: [
-      //     _buildQuestionSection(),
-      //   ],
-      // ),
       body: Center(
         child: _buildQuestionSection(),
       ),
