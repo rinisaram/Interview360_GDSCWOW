@@ -1,9 +1,7 @@
-// part of 'splash_imports.dart';
 
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_web_interview_360_front_end/core/colors/colors.dart';
 
 import '../../core/image_string/image_strings.dart';
