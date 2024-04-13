@@ -24,6 +24,7 @@ class _InterviewScreenState extends State<InterviewScreen> {
   List<String> jobprofile = [
     'React Developer',
     'Flutter Developer',
+    'GDSC Lead',
     'Machine Learning Enginereer'
   ];
 
