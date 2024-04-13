@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'infrastructure/interview_repo.dart';
+import 'infrastructure/repository.dart';
 import 'routes/routes_imports.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(RepositoryProvider(
+    create: (context) => Repository(
+      interviewRepo: InterviewRepo(),
+    ),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

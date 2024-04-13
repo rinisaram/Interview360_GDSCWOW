@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/colors/colors.dart';
 import '../../core/image_string/image_strings.dart';
+import '../../domain/interview_services.dart';
+import '../../infrastructure/repository.dart';
 import '../../routes/routes_imports.gr.dart';
 
 @RoutePage()
@@ -14,11 +17,19 @@ class InterviewScreen extends StatefulWidget {
 }
 
 class _InterviewScreenState extends State<InterviewScreen> {
-  String? _selectedQuestion;
+  late InterviewQsntsViewModel interviewQsntsViewModel;
+  @override
+  void initState() {
+    interviewQsntsViewModel =
+        InterviewQsntsViewModel(repository: context.read<Repository>());
+    super.initState();
+  }
+
+  int? _selectedQuestion;
   String? _selectJobprofile;
 
   // List of dropdown items
-  List<String> questions = ['5', '10', '15', '20', '25'];
+  List<int> questions = [5, 10, 15, 20, 25];
 
   // List of jobprofile
   List<String> jobprofile = [
@@ -64,30 +75,33 @@ class _InterviewScreenState extends State<InterviewScreen> {
           }),
         ],
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildQuestionSection(),
-                _buildSubmitButton(),
-              ],
+      body: Form(
+        key: interviewQsntsViewModel.formKey,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildQuestionSection(),
+                  _buildSubmitButton(),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 200),
-                _buildInfoContainer(),
-                const SizedBox(height: 30),
-                // _buildTipsSection(),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 200),
+                  _buildInfoContainer(),
+                  const SizedBox(height: 30),
+                  // _buildTipsSection(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -133,7 +147,9 @@ class _InterviewScreenState extends State<InterviewScreen> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          interviewQsntsViewModel.interview(context);
+        },
       ),
     );
   }
@@ -158,35 +174,35 @@ class _InterviewScreenState extends State<InterviewScreen> {
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
               )),
-          const SizedBox(height: 5),
-          Container(
-            height: 50,
-            width: 400,
-            decoration: BoxDecoration(
-              color: SystemColors.answerBoxClr,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.all(8),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter your name',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: SystemColors.answerBoxClr,
-              ),
-            ),
-          ),
+          // const SizedBox(height: 5),
+          // Container(
+          //   height: 50,
+          //   width: 400,
+          //   decoration: BoxDecoration(
+          //     color: SystemColors.answerBoxClr,
+          //     borderRadius: BorderRadius.circular(20),
+          //     boxShadow: [
+          //       BoxShadow(
+          //         color: Colors.grey.withOpacity(0.5),
+          //         spreadRadius: 1,
+          //         blurRadius: 5,
+          //         offset: const Offset(0, 3),
+          //       ),
+          //     ],
+          //   ),
+          //   padding: const EdgeInsets.all(8),
+          //   child: TextField(
+          //     decoration: InputDecoration(
+          //       hintText: 'Enter your name',
+          //       border: OutlineInputBorder(
+          //         borderRadius: BorderRadius.circular(20),
+          //         borderSide: BorderSide.none,
+          //       ),
+          //       filled: true,
+          //       fillColor: SystemColors.answerBoxClr,
+          //     ),
+          //   ),
+          // ),
           const SizedBox(height: 20),
           const Text('No. of Questions:',
               style: TextStyle(
@@ -212,7 +228,7 @@ class _InterviewScreenState extends State<InterviewScreen> {
             ),
             padding: const EdgeInsets.fromLTRB(16, 8, 2, 8),
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
+              child: DropdownButton<int>(
                 value: _selectedQuestion,
                 icon: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -224,15 +240,16 @@ class _InterviewScreenState extends State<InterviewScreen> {
                 ),
                 elevation: 0,
                 style: const TextStyle(color: Colors.black),
-                onChanged: (String? newValue) {
+                onChanged: (int? newValue) {
                   setState(() {
                     _selectedQuestion = newValue;
+                    interviewQsntsViewModel.getNumQust(newValue);
                   });
                 },
-                items: questions.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
+                items: questions.map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value.toString()),
                   );
                 }).toList(),
               ),
@@ -261,6 +278,7 @@ class _InterviewScreenState extends State<InterviewScreen> {
                 ),
               ],
             ),
+            //! Select job profile dropdown
             padding: const EdgeInsets.fromLTRB(16, 8, 2, 8),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
@@ -278,6 +296,7 @@ class _InterviewScreenState extends State<InterviewScreen> {
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectJobprofile = newValue;
+                    interviewQsntsViewModel.jobrole(newValue);
                   });
                 },
                 items: jobprofile.map<DropdownMenuItem<String>>((String value) {
