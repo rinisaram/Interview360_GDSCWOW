@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(
                 color: SystemColors.headerColor,
                 fontWeight: FontWeight.w500,
-                fontSize: 25,
+                fontSize: 35,
               )),
           const Text(' Why do you want to work here?',
               style: TextStyle(
