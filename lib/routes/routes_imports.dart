@@ -20,13 +20,23 @@ class AppRouter extends $AppRouter {
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
-          page: ProfileScreenRoute.page,
-          path: '/profile',
+          page: InterviewScreenRoute.page,
+          path: '/intrerview',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: ResumeScreenRoute.page,
+          path: '/resume',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: AboutUsScrenRoute.page,
+          path: '/aboutus',
           transitionsBuilder: TransitionsBuilders.slideRight,
         ),
         CustomRoute(
-          page: ProfileDetailsScreenRoute.page,
-          path: '/profile-details',
+          page: ContactUsScreenRoute.page,
+          path: '/contactus',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
       ];
