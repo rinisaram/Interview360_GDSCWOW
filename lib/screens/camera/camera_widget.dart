@@ -74,14 +74,13 @@ class _CameraWidgetState extends State<CameraWidget> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox(height: 30),
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: 350,
           height: 250,
           child: RTCVideoView(
-            filterQuality: FilterQuality.high,
             _localRenderer,
+            filterQuality: FilterQuality.high,
             objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
             mirror: true,
           ),
@@ -93,7 +92,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
@@ -120,7 +119,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                     height: 25,
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 GestureDetector(
                   onTap: _toggleVideo,
                   child: Image.asset(

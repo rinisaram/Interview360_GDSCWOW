@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_web_interview_360_front_end/core/colors/colors.dart';
 import 'package:flutter_web_interview_360_front_end/core/image_string/image_strings.dart';
 
@@ -13,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
       backgroundColor: SystemColors.backgrounClr,
       appBar: AppBar(
         backgroundColor: SystemColors.headerColor,
@@ -43,14 +43,17 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildQuestionSection(),
+                _buildSubmitButton(),
               ],
             ),
           ),
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(height: 20),
                 _buildInfoContainer(),
+                const SizedBox(height: 30),
                 _buildTipsSection(),
               ],
             ),
@@ -76,11 +79,11 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildQuestionSection() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           const Text('Question:',
               style: TextStyle(
                 color: SystemColors.headerColor,
@@ -138,20 +141,87 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildSubmitButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          'Submit',
+          style: TextStyle(
+            color: Colors.white,
+            // fontWeight: FontWeight.w500,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: SystemColors.headerColor,
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildInfoContainer() {
-    return CameraWidget();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+      child: CameraWidget(),
+    );
   }
 
   Widget _buildTipsSection() {
     return const Padding(
       padding: EdgeInsets.all(8),
-      child: Text(
-        'Tips using the STAR method: Situation, Task, Action, Result',
-        style: TextStyle(
-          color: SystemColors.headerColor,
-          fontWeight: FontWeight.w500,
-          fontSize: 17,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Tips for answering:',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            '• Use the STAR method - Situation, Task, Action, Result.',
+            style: TextStyle(
+              color: SystemColors.headerColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+            ),
+          ),
+          Text(
+            '• Use examples from your work.',
+            style: TextStyle(
+              color: SystemColors.headerColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+            ),
+            textAlign: TextAlign.start,
+          ),
+          Text(
+            '• Focus on your key strengths.',
+            style: TextStyle(
+              color: SystemColors.headerColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+            ),
+            textAlign: TextAlign.start,
+          ),
+          Text(
+            '• Keep your answer concise and focused.',
+            style: TextStyle(
+              color: SystemColors.headerColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ],
       ),
     );
   }
