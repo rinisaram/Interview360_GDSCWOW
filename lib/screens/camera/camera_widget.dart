@@ -72,11 +72,11 @@ class _CameraWidgetState extends State<CameraWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
         SizedBox(height: 30),
         Container(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(10),
           width: 350,
           height: 250,
           child: RTCVideoView(
@@ -98,44 +98,39 @@ class _CameraWidgetState extends State<CameraWidget> {
             ],
           ),
         ),
-        SizedBox(height: 20),
-        Container(
-          width: 90,
-          height: 40,
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: SystemColors.answerBoxClr,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: _toggleMute,
-                child: Image.asset(
-                  _isMuted ? SystemImages.micoff : SystemImages.mic,
-                  width: 30,
-                  height: 30,
+        Positioned(
+          right: 20,
+          bottom: 20,
+          child: Container(
+            width: 80,
+            height: 40,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: SystemColors.answerBoxClr,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: _toggleMute,
+                  child: Image.asset(
+                    _isMuted ? SystemImages.micoff : SystemImages.mic,
+                    width: 25,
+                    height: 25,
+                  ),
                 ),
-              ),
-              SizedBox(width: 10),
-              GestureDetector(
-                onTap: _toggleVideo,
-                child: Image.asset(
-                  _isVideoEnabled ? SystemImages.videoff : SystemImages.video,
-                  width: 30,
-                  height: 30,
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: _toggleVideo,
+                  child: Image.asset(
+                    _isVideoEnabled ? SystemImages.videoff : SystemImages.video,
+                    width: 25,
+                    height: 25,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
