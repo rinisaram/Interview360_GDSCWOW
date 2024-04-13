@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_interview_360_front_end/core/colors/colors.dart';
 import 'package:flutter_web_interview_360_front_end/core/image_string/image_strings.dart';
 
+import '../routes/routes_imports.gr.dart';
 import 'camera/camera_widget.dart';
 
 @RoutePage()
@@ -28,11 +29,21 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         actions: [
-          _buildTextButton('Home'),
-          _buildTextButton('Interview Prep'),
-          _buildTextButton('Resume Reviewer'),
-          _buildTextButton('About Us'),
-          _buildTextButton('Contact Us'),
+          _buildTextButton('Home', () {
+            AutoRouter.of(context).push(const HomeScreenRoute());
+          }),
+          _buildTextButton('Interview Prep', () {
+            AutoRouter.of(context).push(const InterviewScreenRoute());
+          }),
+          _buildTextButton('Resume Reviewer', () {
+            AutoRouter.of(context).push(const ResumeScreenRoute());
+          }),
+          _buildTextButton('About Us', () {
+            AutoRouter.of(context).push(const AboutUsScrenRoute());
+          }),
+          _buildTextButton('Contact Us', () {
+            AutoRouter.of(context).push(const ContactUsScreenRoute());
+          }),
         ],
       ),
       body: Row(
@@ -63,9 +74,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextButton(String title) {
+  Widget _buildTextButton(String title, VoidCallback onPressed) {
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         title,
         style: const TextStyle(
@@ -145,12 +156,10 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
       child: ElevatedButton(
-        onPressed: () {},
         child: Text(
           'Submit',
           style: TextStyle(
             color: Colors.white,
-            // fontWeight: FontWeight.w500,
           ),
         ),
         style: ElevatedButton.styleFrom(
@@ -160,6 +169,7 @@ class HomeScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onPressed: () {},
       ),
     );
   }
