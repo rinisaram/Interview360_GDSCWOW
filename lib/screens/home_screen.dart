@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_web_interview_360_front_end/core/colors/colors.dart';
 import 'package:flutter_web_interview_360_front_end/core/image_string/image_strings.dart';
 
+import 'camera/camera_widget.dart';
+
 @RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -74,32 +76,33 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildQuestionSection() {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 20),
           const Text('Question:',
               style: TextStyle(
                 color: SystemColors.headerColor,
                 fontWeight: FontWeight.w500,
-                fontSize: 17,
+                fontSize: 25,
               )),
           const Text(' Why do you want to work here?',
               style: TextStyle(
                 color: SystemColors.headerColor,
                 fontWeight: FontWeight.w500,
-                fontSize: 17,
+                fontSize: 30,
               )),
-          const SizedBox(height: 20),
-          const Text('Your answer:',
+          const SizedBox(height: 35),
+          const Text('Your Answer:',
               style: TextStyle(
                 color: SystemColors.headerColor,
                 fontWeight: FontWeight.w500,
-                fontSize: 17,
+                fontSize: 25,
               )),
           const SizedBox(height: 15),
           Container(
-            height: 200,
+            height: 400,
             decoration: BoxDecoration(
               color: SystemColors.answerBoxClr,
               borderRadius: BorderRadius.circular(20),
@@ -136,16 +139,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildInfoContainer() {
-    return Container(
-      width: 500,
-      height: 100,
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      padding: const EdgeInsets.all(8),
-    );
+    return CameraWidget();
   }
 
   Widget _buildTipsSection() {
