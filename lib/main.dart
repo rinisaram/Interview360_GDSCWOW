@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       routerConfig: _appRouter.config(),
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'ProductSans',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),

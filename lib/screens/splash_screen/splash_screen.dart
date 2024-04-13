@@ -35,16 +35,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: SystemColors.headerColor,
       body: Center(
-        // child: Text('helloo'),
         child: FadedScaleAnimation(
           fadeDuration: const Duration(milliseconds: 500),
           child: Image.asset(
-            'assets/logo.png',
+            SystemImages.logo,
             height: 100,
             width: 100,
-
-            // height: 100.h,
-            // width: 100.w,
           ),
         ),
       ),
