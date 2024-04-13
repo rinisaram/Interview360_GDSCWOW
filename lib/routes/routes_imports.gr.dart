@@ -8,29 +8,31 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 import 'package:flutter_web_interview_360_front_end/screens/home_screen.dart'
     as _i1;
 import 'package:flutter_web_interview_360_front_end/screens/profile_details_screen.dart'
     as _i2;
 import 'package:flutter_web_interview_360_front_end/screens/profile_screen.dart'
     as _i3;
+import 'package:flutter_web_interview_360_front_end/screens/splash_screen/splash_screen.dart'
+    as _i4;
 
-abstract class $AppRouter extends _i4.RootStackRouter {
+abstract class $AppRouter extends _i5.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
     HomeScreenRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.HomeScreen(),
       );
     },
     ProfileDetailsScreenRoute.name: (routeData) {
       final args = routeData.argsAs<ProfileDetailsScreenRouteArgs>();
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.ProfileDetailsScreen(
           key: args.key,
@@ -40,9 +42,15 @@ abstract class $AppRouter extends _i4.RootStackRouter {
       );
     },
     ProfileScreenRoute.name: (routeData) {
-      return _i4.AutoRoutePage<dynamic>(
+      return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.ProfileScreen(),
+      );
+    },
+    SplashScreenRoute.name: (routeData) {
+      return _i5.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.SplashScreen(),
       );
     },
   };
@@ -50,8 +58,8 @@ abstract class $AppRouter extends _i4.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomeScreen]
-class HomeScreenRoute extends _i4.PageRouteInfo<void> {
-  const HomeScreenRoute({List<_i4.PageRouteInfo>? children})
+class HomeScreenRoute extends _i5.PageRouteInfo<void> {
+  const HomeScreenRoute({List<_i5.PageRouteInfo>? children})
       : super(
           HomeScreenRoute.name,
           initialChildren: children,
@@ -59,18 +67,18 @@ class HomeScreenRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'HomeScreenRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.ProfileDetailsScreen]
 class ProfileDetailsScreenRoute
-    extends _i4.PageRouteInfo<ProfileDetailsScreenRouteArgs> {
+    extends _i5.PageRouteInfo<ProfileDetailsScreenRouteArgs> {
   ProfileDetailsScreenRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     required String name,
     required int age,
-    List<_i4.PageRouteInfo>? children,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
           ProfileDetailsScreenRoute.name,
           args: ProfileDetailsScreenRouteArgs(
@@ -83,8 +91,8 @@ class ProfileDetailsScreenRoute
 
   static const String name = 'ProfileDetailsScreenRoute';
 
-  static const _i4.PageInfo<ProfileDetailsScreenRouteArgs> page =
-      _i4.PageInfo<ProfileDetailsScreenRouteArgs>(name);
+  static const _i5.PageInfo<ProfileDetailsScreenRouteArgs> page =
+      _i5.PageInfo<ProfileDetailsScreenRouteArgs>(name);
 }
 
 class ProfileDetailsScreenRouteArgs {
@@ -94,7 +102,7 @@ class ProfileDetailsScreenRouteArgs {
     required this.age,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final String name;
 
@@ -108,8 +116,8 @@ class ProfileDetailsScreenRouteArgs {
 
 /// generated route for
 /// [_i3.ProfileScreen]
-class ProfileScreenRoute extends _i4.PageRouteInfo<void> {
-  const ProfileScreenRoute({List<_i4.PageRouteInfo>? children})
+class ProfileScreenRoute extends _i5.PageRouteInfo<void> {
+  const ProfileScreenRoute({List<_i5.PageRouteInfo>? children})
       : super(
           ProfileScreenRoute.name,
           initialChildren: children,
@@ -117,5 +125,19 @@ class ProfileScreenRoute extends _i4.PageRouteInfo<void> {
 
   static const String name = 'ProfileScreenRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.SplashScreen]
+class SplashScreenRoute extends _i5.PageRouteInfo<void> {
+  const SplashScreenRoute({List<_i5.PageRouteInfo>? children})
+      : super(
+          SplashScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashScreenRoute';
+
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }

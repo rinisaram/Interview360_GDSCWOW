@@ -9,9 +9,14 @@ class AppRouter extends $AppRouter {
   @override
   List<CustomRoute> get routes => [
         CustomRoute(
-          page: HomeScreenRoute.page,
+          page: SplashScreenRoute.page,
           path: '/',
           initial: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: HomeScreenRoute.page,
+          path: '/home',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
