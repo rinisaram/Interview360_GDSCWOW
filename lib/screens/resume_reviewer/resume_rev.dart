@@ -26,7 +26,8 @@ class _ResumeScreenState extends State<ResumeScreen> {
 
   void generateRandomScore() {
     final random = Random();
-    int randomScore = random.nextInt(101);
+    // Generate a random score between 70 and 100
+    int randomScore = 70 + random.nextInt(31); // 31 because 100 - 70 + 1 = 31
     setState(() {
       score = "$randomScore%";
     });
@@ -181,6 +182,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
                     if (result != null) {
                       PlatformFile file = result.files.first;
                       print(file.name);
+                      generateRandomScore();
                     }
                   },
                   child: Container(
