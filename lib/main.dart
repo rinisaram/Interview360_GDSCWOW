@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'infrastructure/evaluation_repo.dart';
 import 'infrastructure/interview_repo.dart';
 import 'infrastructure/repository.dart';
 import 'routes/routes_imports.dart';
@@ -8,7 +9,9 @@ import 'routes/routes_imports.dart';
 void main() {
   runApp(RepositoryProvider(
     create: (context) => Repository(
+      
       interviewRepo: InterviewRepo(),
+      evaluationRepo: EvaluationRepo(),
     ),
     child: MyApp(),
   ));

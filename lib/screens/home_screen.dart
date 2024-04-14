@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_interview_360_front_end/core/colors/colors.dart';
 import 'package:flutter_web_interview_360_front_end/core/image_string/image_strings.dart';
+import '../domain/evaluate_models/evaluate_services.dart';
+import '../infrastructure/repository.dart';
 import '../routes/routes_imports.gr.dart';
 import '../utils/utils.dart';
 import 'camera/camera_widget.dart';
@@ -15,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late EvaluateQsntsViewModel evaluateViewModel;
   List<String> questions = [];
   int currentQuestionIndex = 0;
   final Map<String, String> questionAnswers = {};
@@ -24,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    evaluateViewModel =
+        EvaluateQsntsViewModel(repository: context.read<Repository>());
     super.initState();
     loadQuestions();
   }
@@ -245,7 +251,9 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          evaluateViewModel.evaluation(context, questionAnswers);
+        },
       ),
     );
   }

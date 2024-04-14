@@ -1,12 +1,36 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../../core/colors/colors.dart';
 import '../../core/image_string/image_strings.dart';
 import '../../routes/routes_imports.gr.dart';
 
 @RoutePage()
-class ResumeScreen extends StatelessWidget {
+class ResumeScreen extends StatefulWidget {
   const ResumeScreen({super.key});
+
+  @override
+  State<ResumeScreen> createState() => _ResumeScreenState();
+}
+
+class _ResumeScreenState extends State<ResumeScreen> {
+  String score = "0%";
+
+  @override
+  void initState() {
+    super.initState();
+    generateRandomScore();
+  }
+
+  void generateRandomScore() {
+    final random = Random();
+    int randomScore = random.nextInt(101);
+    setState(() {
+      score = "$randomScore%";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +96,9 @@ class ResumeScreen extends StatelessWidget {
   }
 
   Widget _buildInfoContainer() {
-    return const Column(
+    return Column(
       children: [
-        Text(
+        const Text(
           'Your Score is:',
           style: TextStyle(
               color: SystemColors.headerColor,
@@ -82,10 +106,10 @@ class ResumeScreen extends StatelessWidget {
               fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
-          '80%',
-          style: TextStyle(
+          score,
+          style: const TextStyle(
               color: SystemColors.headerColor,
               fontSize: 150,
               fontWeight: FontWeight.w500),
@@ -147,7 +171,18 @@ class ResumeScreen extends StatelessWidget {
                   width: 10,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['pdf'],
+                    );
+
+                    if (result != null) {
+                      PlatformFile file = result.files.first;
+                      print(file.name);
+                    }
+                  },
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
