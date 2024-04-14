@@ -39,5 +39,10 @@ class AppRouter extends $AppRouter {
           path: '/contactus',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
+        CustomRoute(
+          page: EvalutionResultRoute.page,
+          path: '/evaluationresult',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
       ];
 }
