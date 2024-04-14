@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -13,8 +12,7 @@ class EvaluationRepo extends ApiClient {
   Future<EvaluateAnswersModels> evaluateQsnts(
       Map<String, String> answers, context) async {
     Map body = answers;
-    print(body);
-
+    print('..........>$body');
     try {
       final response =
           await postRequest(path: ApiEndPointUrls.evaluateResp, body: body);

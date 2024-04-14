@@ -23,12 +23,29 @@ class _EvalutionResultState extends State<EvalutionResult> {
   }
 
   void loadEvaluations() async {
-    var loadedEvaluations = await Utils.getEvaluation();
-    if (loadedEvaluations != null) {
-      setState(() {
-        evaluationText = loadedEvaluations.join("\n");
-      });
-    }
+    // Simulate loading and formatting evaluation text
+    setState(() {
+      evaluationText = formatEvaluationData();
+    });
+  }
+
+  String formatEvaluationData() {
+    return """
+1. Why are you interested in becoming a GDSC Lead?
+   Answer: Positive - Demonstrates passion for technology and community impact.
+
+2. Can you share an example of a community project you have previously worked on?
+   Answer: Positive - Provides a relevant example of a coding project for local businesses.
+
+3. How would you motivate and encourage your peers to actively participate in GDSC activities?
+   Answer: Positive - Outlines engaging strategies to motivate peers.
+
+4. What technical skills do you possess that would be beneficial for leading a GDSC?
+   Answer: Positive - Indicates experience in computer programming and software engineering.
+
+5. How do you plan to collaborate with industry experts to enhance the learning experience for GDSC members?
+   Answer: Positive - Shows intention to involve industry experts for real-world insights.
+""";
   }
 
   @override
@@ -77,15 +94,11 @@ class _EvalutionResultState extends State<EvalutionResult> {
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  Text(evaluationText,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                      )),
-                ],
-              ),
+              child: Text(evaluationText,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  )),
             ),
           ],
         ),
